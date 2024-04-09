@@ -22,13 +22,13 @@ setup(
         ],
     packages=['straglr'],
     install_requires = [
-        'pysam>=0.14.0',
-        'pybedtools>=0.9.0',
-        'numpy>=1.22.3',
-        'pathos>=0.2.3',
-        'scikit-learn>=1.1',
-        'scipy>=1.8.0',
-        'natsort'
+        'pysam==0.22.0',
+        'pybedtools==0.9.1',
+        'numpy==1.26.4',
+        'pathos==0.3.2',
+        'scikit-learn==1.4.0',
+        'scipy==1.13.0',
+        'natsort==8.4.0'
         ],
     entry_points ={
         'console_scripts': [
