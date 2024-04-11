@@ -1255,6 +1255,8 @@ class TREFinder:
         output_vcf_header += '##FORMAT=<ID=SO,Number=1,Type=String,Description="Type of reads that support the allele; can be SPANNING, FLANKING, or INREPEAT meaning that the reads span, flank, or are fully contained in the repeat">\n'
 
         for variant in natsorted(variants, key=itemgetter(0, 1, 2)):
+            if not variant[5]:
+                continue
             cols = variant[:3] + [variant[4]]
             sizes = []
             copy_numbers = []
