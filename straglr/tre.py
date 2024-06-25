@@ -1290,7 +1290,7 @@ class TREFinder:
             repeat_id, variant_id = loci["{}:{}-{}".format(chrom, start_pos, end_pos)]
 
             allele1_repeat_count = round(cols[5])
-            output_vcf_header_alt.add('##ALT=<ID=STR{},Description="Allele comprised of {} repeat units">\n'.format(allele1_repeat_count, allele1_repeat_count))
+
             allel1_ci_lower, allel1_ci_upper = ci[cols[5]]
             allel1_support = cols[6]
 
@@ -1301,8 +1301,14 @@ class TREFinder:
             for pileupcolumn in pyBAM.pileup(chrom, start_pos, end_pos, truncate=True):
                 d_sum += pileupcolumn.n
                 d_n += 1
+
+            if d_n == 0:
+                print("Warning: no primiary alignments found for {}. Skipping locus.".format(repeat_id))
+                continue
+
             lc = int(d_sum / d_n)
 
+            output_vcf_header_alt.add('##ALT=<ID=STR{},Description="Allele comprised of {} repeat units">\n'.format(allele1_repeat_count, allele1_repeat_count))
             if homzygous:
                 is_ref_allele = abs(allele1_repeat_count - ref_repeat_count) < 1
                 if is_ref_allele:
