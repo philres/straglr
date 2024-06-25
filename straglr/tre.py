@@ -1303,7 +1303,7 @@ class TREFinder:
                 d_n += 1
 
             if d_n == 0:
-                print("Warning: no primiary alignments found for {}. Skipping locus.".format(repeat_id))
+                print("Warning: no primary alignments found for {}. Skipping locus.".format(repeat_id))
                 continue
 
             lc = int(d_sum / d_n)
